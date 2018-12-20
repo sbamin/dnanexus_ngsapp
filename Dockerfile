@@ -14,7 +14,7 @@ LABEL version="1.1.3" \
       description="docker image to run workflows on DNA Nexus Platform" \
       contributor1="Sandeep Namburi, GitHub @snamburi3" \
       website="https://verhaaklab.com" \
-      code="https://github.com/TheJacksonLaboratory/dnanexus_ngsapp" \
+      code="https://github.com/sbamin/dnanexus_ngsapp" \
       contact="Samir Amin, @sbamin" \
       NOTICE="Third party integrations were used for a list of tools from ftp://ftp.jax.org/verhaak/deps/"
 
