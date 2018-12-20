@@ -1,0 +1,47 @@
+MIT License
+
+Copyright (c) 2018 Samirkumar B Amin
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+##########################
+THIRD PARTY LICENSES
+##########################
+
+DOCKERFILE AND RESULTING IMAGE CONTAINS SOFTWARES FROM FOLLOWING SOURCES.
+LICENSE TERMS FOR RESPECTIVE SOFTWARE DEVELOPERS (INCOMPLETE LIST) ARE AS FOLLOWS:
+
+1. ANACONDA: https://conda.io/docs/license.html
+2. JAVA JDK: https://www.oracle.com/technetwork/java/javase/terms/license/index.html
+3. PICARD TOOLS: https://broadinstitute.github.io/picard/
+4. GATK4: https://software.broadinstitute.org/gatk/download/licensing
+5. VarScan2: https://github.com/dkoboldt/varscan
+6. Mutect: https://github.com/broadinstitute/mutect/blob/master/mutect.LICENSE.TXT
+7. Snakemake: https://snakemake.readthedocs.io/en/stable/project_info/license.html
+8. samtools, bcftools, htslib: https://github.com/samtools/samtools/blob/develop/LICENSE
+9. bedtools: https://bedtools.readthedocs.io/en/latest/#license
+10. TitanCNA: https://github.com/gavinha/TitanCNA/blob/master/LICENSE
+11. R CRAN: https://www.r-project.org/Licenses/
+12. Tidyverse: https://github.com/tidyverse/tidyverse/blob/master/LICENSE
+13. Smoove and related tools: https://github.com/brentp/smoove/blob/master/LICENSE
+15. SVTyper: https://github.com/hall-lab/svtyper/blob/master/LICENSE
+16. SVTools: https://github.com/hall-lab/svtools/blob/master/LICENSE.txt
+17. Freebayes: https://github.com/ekg/freebayes/blob/master/LICENSE
+
+END
