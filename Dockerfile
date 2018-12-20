@@ -171,7 +171,7 @@ RUN conda create --yes -n smoove smoove && \
 	cd /opt && \
 	rm -rf /opt/sambamba && \
 	apt-get update && \
-	apt-get install --yes --no-install-recommends bsdmainutils && \
+	apt-get install --yes --no-install-recommends bsdmainutils automake && \
 	cd /opt && \
 	git clone --recursive https://github.com/arq5x/lumpy-sv.git && \
 	cd lumpy-sv && \
