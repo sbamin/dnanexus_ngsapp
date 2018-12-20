@@ -157,19 +157,10 @@ RUN conda create --yes -n smoove smoove && \
 	ln -s ../envs/smoove/bin/svtyper ./ && \
 	ln -s ../envs/smoove/bin/svtools ./ && \
 	cd /opt && \
-	git clone --recursive https://github.com/arq5x/lumpy-sv.git && \
-	cd lumpy-sv && \
-	make && \
-	cp bin/* /usr/local/bin/. && \
-	cd /opt && \
 	git clone https://github.com/GregoryFaust/samblaster.git && \
 	cd samblaster && \
 	make && \
 	cp samblaster /usr/local/bin/. && \
-	cd /opt && \
-	wget --no-check-certificate http://mirrors.kernel.org/ubuntu/pool/main/g/gawk/gawk_4.1.3+dfsg-0.1_amd64.deb && \
-	dpkg -i gawk_4.1.3+dfsg-0.1_amd64.deb && \
-	rm gawk_4.1.3+dfsg-0.1_amd64.deb && \
 	cd /opt && \
 	mkdir -p /opt/sambamba && \
 	cd /opt/sambamba && \
@@ -179,6 +170,18 @@ RUN conda create --yes -n smoove smoove && \
 	cp sambamba /usr/local/bin/. && \
 	cd /opt && \
 	rm -rf /opt/sambamba && \
+	apt-get update && \
+	apt-get install --yes --no-install-recommends bsdmainutils && \
+	cd /opt && \
+	git clone --recursive https://github.com/arq5x/lumpy-sv.git && \
+	cd lumpy-sv && \
+	make && \
+	cp bin/* /usr/local/bin/. && \
+	cd /opt && \
+	wget --no-check-certificate http://mirrors.kernel.org/ubuntu/pool/main/g/gawk/gawk_4.1.3+dfsg-0.1_amd64.deb && \
+	dpkg -i gawk_4.1.3+dfsg-0.1_amd64.deb && \
+	rm gawk_4.1.3+dfsg-0.1_amd64.deb && \
+	cd /opt && \
 	cd /opt/bin && \
 	wget --no-check-certificate ftp://ftp.jax.org/verhaak/deps/gsort && \
 	chmod 755 gsort && \
