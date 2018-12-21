@@ -1,0 +1,7 @@
+#!/bin/bash
+
+## source env
+. /etc/profile
+
+## Do not do userid mapping at startup
+bash -c "$@"

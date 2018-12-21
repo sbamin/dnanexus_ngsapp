@@ -46,4 +46,22 @@ docker run -e HOSTUSER=$USER -e HOSTGROUP=$(id -gn $USER) -e HOSTUSERID=$UID -e 
 
 >Resulting *hello.txt* file will be at "$DOCKSCRATCH"/hello.txt  
 
+### To run as root
+
+```sh
+set -euo pipefail
+
+## path where data will be stored on the host machine
+export DOCKSCRATCH="$HOME/Downloads/dna_nexus/scratch"
+export DOCKEVO="$HOME/Downloads/dna_nexus/evocore"
+
+mkdir -p "$DOCKSCRATCH"
+mkdir -p "$DOCKEVO"
+
+cd "${DOCKSCRATCH}"
+
+## Using patched image
+docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore sbamin/dnanexus_ngsapp:1.1.3p1 "printf 'Hello World! I am '; id -a | tee -a /mnt/scratch/hello.txt"
+```
+
 _END_
