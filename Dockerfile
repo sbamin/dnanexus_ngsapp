@@ -4,7 +4,7 @@
 # GitHub: @sbamin
 ############################################################
 
-FROM sbamin/dnanexus_ngsapp:1.1.3
+FROM quay.io/sbamin/dnanexus_ngsapp:1.1.3
 
 ## For questions, visit https:
 MAINTAINER "Samir B. Amin" <tweet:sbamin; sbamin.com/contact>
