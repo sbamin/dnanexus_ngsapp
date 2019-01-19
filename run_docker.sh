@@ -3,15 +3,18 @@
 set -euo pipefail
 
 ## path where data will be stored on the host machine
-export DOCKSCRATCH="$HOME/Downloads/dna_nexus/scratch"
-export DOCKEVO="$HOME/Downloads/dna_nexus/evocore"
+export DOCKSCRATCH="/mnt/scratch/lab/amins/docknexus/v2_20190118/mnts/scratch"
+export DOCKEVO="/mnt/scratch/lab/amins/docknexus/v2_20190118/mnts/evocore"
 
 mkdir -p "$DOCKSCRATCH"
 mkdir -p "$DOCKEVO"
 
 cd "${DOCKSCRATCH}"
 
-## MAKE SURE TO GIVE PROPER USER AND GROUP IDs, matching to those of host machine
-docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore sbamin/dnanexus_ngsapp:1.1.3p1 "printf 'Hello World! I am '; id -a | tee -a /mnt/scratch/hello.txt"
+## Dry run snakemake
+docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore sbamin/dnanexus_ngsapp:1.1.4 "cd /mnt/evocore/repos/TitanCNA/scripts/snakemake && ./run_snakemake_nexus.sh -m DRY | tee -a /mnt/scratch/testrun.log"
+
+## Run snakemake
+# docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore sbamin/dnanexus_ngsapp:1.1.4 "cd /mnt/evocore/repos/TitanCNA/scripts/snakemake && ./run_snakemake_nexus.sh -m RUN | tee -a /mnt/scratch/testrun.log"
 
 ## END ##
