@@ -4,12 +4,12 @@
 # GitHub: @sbamin
 ############################################################
 
-FROM quay.io/sbamin/dnanexus_ngsapp:1.1.3
+FROM sbamin/dnanexus_ngsapp:1.1.3p1
 
 ## For questions, visit https:
 MAINTAINER "Samir B. Amin" <tweet:sbamin; sbamin.com/contact>
 
-LABEL version="1.1.3p1" \
+LABEL version="1.1.4" \
       mode="devp version for DNA Nexus Computing" \   
       description="docker image to run workflows on DNA Nexus Platform. Run as root" \
       contributor1="Sandeep Namburi, GitHub @snamburi3" \
@@ -36,6 +36,19 @@ ENV LC_ALL=en_US.UTF-8 \
     TZ=Etc/UTC \
     DEBIAN_FRONTEND=noninteractive \
     DEBCONF_NONINTERACTIVE_SEEN=true
+
+####### Install more tools ########
+
+## hmmcopy_utils
+RUN cd /opt && \
+	git clone https://github.com/shahcompbio/hmmcopy_utils.git && \
+	cd hmmcopy_utils && \
+	cmake . && \
+	make && \
+	chmod 755 bin/* && \
+	mv bin/* /opt/bin && \
+	cd /opt && \
+	rm -rf /opt/hmmcopy_utils
 
 ####### Override userid mapping #######
 ## run container as a root

@@ -11,6 +11,9 @@ if [[ -d "$MYHOSTVOL"  && -x "$MYHOSTVOL"/configs/bin/startup ]]; then
 	echo "Overriding startup script with $MYHOSTVOL/configs/bin/startup"
 	echo "WARN: Skipping default userid mapping unless specified in an updated startup script"
 	
+	PATH="${MYHOSTVOL}"/configs/bin:"${PATH}"
+	export PATH
+
 	"${MYHOSTVOL}"/configs/bin/startup "$@"
 else
 	## enable user id mapping when starting docker container
