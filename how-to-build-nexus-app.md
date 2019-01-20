@@ -1,6 +1,10 @@
 ## Building DNA Nexus App
 
->[Building docker based dx app](https://wiki.dnanexus.com/Developer-Tutorials/Using-Docker-Images)  
+Samir B. Amin, @sbamin
+Sandeep Namburi, @snamburi3
+
+*   [Building docker based dx app](https://wiki.dnanexus.com/Developer-Tutorials/Using-Docker-Images)
+*   PS: Some of links may not be accessible to all as this is work in progress. We will push dx-app code to public once it runs on DNA Nexus platform.
 
 ### Create docker asset record
 
@@ -79,3 +83,81 @@ cd /mnt/scratch/lab/amins/docknexus/v2_dxapp
 
 dx-app-wizard
 ```
+
+Once we build default schema for a new app named, *titancna_sjc*, run `cd titancna_sjc && git init && git add --all && git commit -m "default app` within titancna_sjc directory to track changes to schema and other contents.
+
+```sh
+git diff
+```
+*   Making [following changes](https://github.com/sbamin/dxapp_titancna_sjc/commit/2bc14c50e71b2dc50bdf84c12aebcb59fa9f8f25) to *dxapp.json*
+
+[From how-to guide](https://wiki.dnanexus.com/Developer-Tutorials/Intro-to-Building-Apps): When you use the DNAnexus build utility to build your applet, any files in the `titancna_sjc/resources` directory will be packaged as part of your applet and will be placed in the root directory of the virtual Linux PC whenever your applet is run in the cloud. Files placed in `titancna_sjc/resources/usr/bin` will therefore be put in `/usr/bin` in the container and be available in the default path at runtime. (Note: while the mytrimmer/resources subdirectory is unpacked into the root of the virtual filesystem, **your applet's executable will later start in `/home/dnanexus` as its current working directory.**
+
+### Copy local resources
+
+```
+rsync -avhP /mnt/scratch/lab/amins/docknexus/v2_20190118/mnts/ <path to titancna_sjc>/resources/mnt/
+
+cd titancna_sjc/resources
+```
+
+*  View directory structure under `titancna_sjc/resources` using `tree -d`
+
+```
+.
+└── mnt
+    ├── evocore ## mounted to /mnt/evocore inside docker container
+    │   ├── configs
+    │   │   └── bin ## scripts under this dir are exported to container PATH 
+    │   └── repos ## required code for TITAN CNA goes here
+    │       ├── ichorCNA
+    │       │   ├── inst
+    │       │   │   └── extdata
+    │       │   ├── man
+    │       │   ├── R
+    │       │   └── scripts
+    │       │       └── snakemake
+    │       │           └── config
+    │       └── TitanCNA
+    │           ├── data
+    │           ├── inst
+    │           │   └── extdata
+    │           ├── man
+    │           ├── R
+    │           ├── scripts
+    │           │   ├── code -> snakemake/code
+    │           │   ├── R_scripts
+    │           │   ├── snakemake ## WORKDIR to run snakemake
+    │           │   │   ├── code
+    │           │   │   └── config
+    │           │   └── TenX_scripts
+    │           │       └── data
+    │           ├── src
+    │           └── vignettes
+    └── scratch ## mounted to /mnt/scratch inside docker container
+        ├── bam ## location where tumor and normal bam files are saved
+        ├── refdata ## reference data
+        └── tmp
+```
+
+### Make startup script
+
+*   View startup script, `src/titancna_sjc.sh` at [app code directory](https://github.com/sbamin/dxapp_titancna_sjc)
+*   This also required to make changes in snakemake workflow for TITAN. View those changes at [TITAN dnanexus branch](https://github.com/sbamin/TitanCNA/tree/dnanexus)
+
+### Build App
+
+```sh
+# change to one level up from a path to titancna_sjc app directory
+dx build titancna_sjc |& tee -a build_titancna_sjc.log
+```
+
+### View summary
+
+```
+dx describe titancna_sjc
+```
+
+...
+
+END
