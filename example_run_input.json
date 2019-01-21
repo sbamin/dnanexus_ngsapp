@@ -1,0 +1,41 @@
+{
+    "run_config": {
+        "$dnanexus_link": {
+            "project": "project-FFk15V89012BYGZ0K83QVz64",
+            "id": "file-FV2PKzQ9012Pkx34142X5PjP"
+        }
+    },
+    "sample_id": "SJHGG001",
+    "tumor_bam": {
+        "$dnanexus_link": {
+            "project": "project-FFk15V89012BYGZ0K83QVz64",
+            "id": "file-FBg2gpj9v0bfzb4JFGYPKKPf"
+        }
+    },
+    "tumor_bai": {
+        "$dnanexus_link": {
+            "project": "project-FFk15V89012BYGZ0K83QVz64",
+            "id": "file-FBg2gz89v0bX42KkFJ8pY7bv"
+        }
+    },
+    "normal_bam": {
+        "$dnanexus_link": {
+            "project": "project-FFk15V89012BYGZ0K83QVz64",
+            "id": "file-FBjjz989pX0zqyQzG64qyjV1"
+        }
+    },
+    "ref_fasta": {
+        "$dnanexus_link": {
+            "project": "project-FFk15V89012BYGZ0K83QVz64",
+            "id": "file-FV2bBqj9zzpF7GBx4G5KFpy9"
+        }
+    },
+    "run_mode": "RUN",
+    "normal_bai": {
+        "$dnanexus_link": {
+            "project": "project-FFk15V89012BYGZ0K83QVz64",
+            "id": "file-FBjjzK89pX0QbX22G5qQjJkY"
+        }
+    },
+    "ncores": 6
+}

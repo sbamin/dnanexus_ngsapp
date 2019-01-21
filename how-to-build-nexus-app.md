@@ -13,22 +13,29 @@ Sandeep Namburi, @snamburi3
 ```
 ssh relu
 source /opt/dx-toolkit/environment
+
+dx login
+dx select
+## select SJC sponsorted bucket. Make sure to note Region from https://platform.dnanexus.com/projects, e.g., azure:west in this example.
 ```
 
 *   Import docker image and make an dx-asset
 
 ```
 cd /mnt/scratch/lab/amins/docknexus
-mkdir -p v2_dxapp && cd v2_dxapp
+mkdir -p v2_dxapp/titancna_sjc_azwest && \
+cd v2_dxapp/titancna_sjc_azwest
 
-dx-docker create-asset sbamin/dnanexus_ngsapp:1.1.4
+# dx-docker create-asset sbamin/dnanexus_ngsapp:1.1.4
+
+dx-docker create-asset --ubuntu_version 16.04 --asset_version 0.9.3 sbamin/dnanexus_ngsapp:1.1.5 |& tee -a create_asset_dnanexus_v0.9.3.log
 ```
 
 *   Expected output:
     -   Note required json list below for `dxapp.json`
 
 ```
-Exporting Docker image sbamin/dnanexus_ngsapp:1.1.4
+Exporting Docker image sbamin/dnanexus_ngsapp:1.1.5
 Extracting 0b82eda5673a
 Extracting ca7d258f6606
 Extracting d50c408b1317
@@ -58,16 +65,17 @@ Extracting 45cdf1359e6d
 Extracting 8025292e7558
 Extracting 40c7376974af
 Extracting 94b88b8bd231
-Extracting f68bf914769c
-Building DNAnexus asset for sbamin/dnanexus_ngsapp:1.1.4
-Uploading DNAnexus asset for sbamin/dnanexus_ngsapp:1.1.4
-Image sbamin/dnanexus_ngsapp:1.1.4 successfully cached in DNAnexus platform.
+Extracting 8c7651a7f523
+Extracting 26d8028297ca
+Building DNAnexus asset for sbamin/dnanexus_ngsapp:1.1.5
+Uploading DNAnexus asset for sbamin/dnanexus_ngsapp:1.1.5
+Image sbamin/dnanexus_ngsapp:1.1.5 successfully cached in DNAnexus platform.
 To include this cached image in an application, please include the following within the runspec/assetDepends list in your dxapp.json.
     {
-        "project": "project-FV1Zq1Q0PfpFkJ2J3vJKP5XF",
+        "project": "project-FFk15V89012BYGZ0K83QVz64",
         "folder": "/",
-        "name": "sbamin/dnanexus_ngsapp:1.1.4",
-        "version": "0.0.1"
+        "name": "sbamin/dnanexus_ngsapp:1.1.5",
+        "version": "0.9.3"
     }
 ```
 
@@ -149,15 +157,21 @@ cd titancna_sjc/resources
 
 ```sh
 # change to one level up from a path to titancna_sjc app directory
-dx build titancna_sjc |& tee -a build_titancna_sjc.log
+dx build titancna_sjc_azwest |& tee -a build_titancna_sjc_azwest.log
 ```
+
+>{"id": "applet-FV2PGB89012K3XKz6499Fkvx"}  
 
 ### View summary
 
 ```
-dx describe titancna_sjc
+dx describe titancna_sjc_azwest
 ```
 
-...
+### To test run
+
+```
+dx run titancna_sjc_azwest -f example_run_input.json
+```
 
 END
