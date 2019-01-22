@@ -2,31 +2,31 @@
     "run_config": {
         "$dnanexus_link": {
             "project": "project-FFk15V89012BYGZ0K83QVz64",
-            "id": "file-FV39PQ89012GX1FKBQ50p9QX"
+            "id": "file-FV2PKzQ9012Pkx34142X5PjP"
         }
     },
     "tumor_bam": {
         "$dnanexus_link": {
             "project": "project-FFk15V89012BYGZ0K83QVz64",
-            "id": "file-FV390xj901278q2bB4YzZ8Kf"
+            "id": "file-FBg2gpj9v0bfzb4JFGYPKKPf"
         }
     },
     "tumor_bai": {
         "$dnanexus_link": {
             "project": "project-FFk15V89012BYGZ0K83QVz64",
-            "id": "file-FV390xQ9012PG7VjB54GzKvz"
+            "id": "file-FBg2gz89v0bX42KkFJ8pY7bv"
         }
     },
     "normal_bam": {
         "$dnanexus_link": {
             "project": "project-FFk15V89012BYGZ0K83QVz64",
-            "id": "file-FV390jQ9012PFxyKFQpX2b15"
+            "id": "file-FBjjz989pX0zqyQzG64qyjV1"
         }
     },
     "normal_bai": {
         "$dnanexus_link": {
             "project": "project-FFk15V89012BYGZ0K83QVz64",
-            "id": "file-FV390p09012FV3qb09PQq0Z5"
+            "id": "file-FBjjzK89pX0QbX22G5qQjJkY"
         }
     },
     "ref_fasta": {
@@ -41,7 +41,7 @@
             "id": "file-FV3B9j890123038KB4GqpKqV"
         }
     },
-    "sample_id": "tumor_1",
+    "sample_id": "SJHGG001",
     "run_mode": "RUN",
-    "ncores": 6
+    "ncores": 16
 }
