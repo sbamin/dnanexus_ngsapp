@@ -1,0 +1,37 @@
+#!/bin/bash
+## startup script at docker entrypoint ##
+# 12-2018 | @sbamin
+# v 1.2
+
+#### Override container startup script if updated one is present in mounted volume ####
+## default location to mount host volumne inside running container
+export MYHOSTVOL=${MYHOSTVOL:-"/mnt/evocore"}
+
+if [[ -d "$MYHOSTVOL"  && -x "$MYHOSTVOL"/configs/bin/startup ]]; then
+	echo "Overriding startup script with $MYHOSTVOL/configs/bin/startup"
+	echo "WARN: Skipping default userid mapping unless specified in an updated startup script"
+	
+	PATH="${MYHOSTVOL}"/configs/bin:"${PATH}"
+	export PATH
+
+	"${MYHOSTVOL}"/configs/bin/startup "$@"
+else
+	## enable user id mapping when starting docker container
+	## force disable user mapping if -e USERMAPPING=DISABLE is passed at running docker run command
+	USERMAPPING=${USERMAPPING:-ENABLE}
+	echo "User and Group ID mapping: $USERMAPPING"
+
+	if [[ "${USERMAPPING}" != "DISABLE" ]]; then
+		echo "Running userid_mapping.sh script"
+		## pass user supplied args at docker run command, if any
+		/opt/bin/userid_mapping.sh "$@"
+	else
+	    echo -e "\n## INFO ##\nRunning as a non-root user with limited read-write privileges to host file system\n"
+	    ## source /etc/profile
+	    . /etc/profile
+	    ## pass user supplied commands to container
+		bash -c "$@"
+	fi
+fi
+
+## END ##

@@ -1,3 +1,7 @@
 dnanexus_ngsapp_setup.md
 README.md
 run_docker.sh
+how-to-build-nexus-app.md
+example_run_input.json
+setup/bin/startup_alt
+setup/bin/userid_mapping.sh
