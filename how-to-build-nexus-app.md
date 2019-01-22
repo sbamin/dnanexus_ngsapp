@@ -28,54 +28,48 @@ cd v2_dxapp/titancna_sjc_azwest
 
 # dx-docker create-asset sbamin/dnanexus_ngsapp:1.1.4
 
-dx-docker create-asset --ubuntu_version 16.04 --asset_version 0.9.3 sbamin/dnanexus_ngsapp:1.1.5 |& tee -a create_asset_dnanexus_v0.9.3.log
+dx-docker create-asset --ubuntu_version 16.04 --asset_version 0.9.4 quay.io/sbamin/dnanexus_ngsapp:1.1.6 |& tee -a create_asset_dnanexus_v0.9.4.log
 ```
 
 *   Expected output:
     -   Note required json list below for `dxapp.json`
 
 ```
-Exporting Docker image sbamin/dnanexus_ngsapp:1.1.5
-Extracting 0b82eda5673a
-Extracting ca7d258f6606
-Extracting d50c408b1317
-Extracting fbe0c1589b0c
-Extracting 5dba089da61a
-Extracting abf5aa11bce6
-Extracting 7ee8a060c26d
-Extracting c95632cc2a20
-Extracting ca383520045d
-Extracting 5aafd5af1064
-Extracting 4b1000767ccd
-Extracting 18fa0444de26
-Extracting 476df6201683
-Extracting e1974e321e66
-Extracting 21b92109f4cc
-Extracting b032c4d173f9
-Extracting 6e1b094d03b2
-Extracting 9871f2a50540
-Extracting d441b8ad9ff2
-Extracting d73f7b2c385a
-Extracting fcb26dadf64f
-Extracting 36ae91a54e9f
-Extracting a6fa9fdc397f
-Extracting 974777ffcea8
-Extracting dd64cd7078c9
-Extracting 45cdf1359e6d
-Extracting 8025292e7558
-Extracting 40c7376974af
-Extracting 94b88b8bd231
-Extracting 8c7651a7f523
-Extracting 26d8028297ca
-Building DNAnexus asset for sbamin/dnanexus_ngsapp:1.1.5
-Uploading DNAnexus asset for sbamin/dnanexus_ngsapp:1.1.5
-Image sbamin/dnanexus_ngsapp:1.1.5 successfully cached in DNAnexus platform.
+dx-docker create-asset --ubuntu_version 16.04 --asset_version 0.9.4 quay.io/sbamin/dnanexus_ngsapp:1.1.6 |& tee -a create_asset_dnanexus_v0.9.4.log
+Exporting Docker image quay.io/sbamin/dnanexus_ngsapp:1.1.6
+Extracting 21aacd39d68f
+Extracting d812919e5f79
+Extracting bb84666b3447
+Extracting 082518d45819
+Extracting d168942882ab
+Extracting 100d9f9f33ba
+Extracting c21b5de67f6d
+Extracting 4fe4af637973
+Extracting 45ee7ae864aa
+Extracting cc5905d5a2ff
+Extracting f3939fe574a2
+Extracting cabe4b03b9f4
+Extracting f3a80372b1ce
+Extracting 72a94acfdc73
+Extracting c3e5166671ed
+Extracting dab08b2b97c3
+Extracting 3d356303e470
+Extracting 97999acb1dc3
+Extracting bb15fae5e86b
+Extracting db5af5b653cf
+Extracting 2885aea12da7
+Extracting 8a8a222fb6c2
+Extracting 3d4612927ed3
+Extracting 9f176a87a077
+Building DNAnexus asset for quay.io/sbamin/dnanexus_ngsapp:1.1.6
+Uploading DNAnexus asset for quay.io/sbamin/dnanexus_ngsapp:1.1.6
+Image quay.io/sbamin/dnanexus_ngsapp:1.1.6 successfully cached in DNAnexus platform.
 To include this cached image in an application, please include the following within the runspec/assetDepends list in your dxapp.json.
     {
         "project": "project-FFk15V89012BYGZ0K83QVz64",
         "folder": "/",
-        "name": "sbamin/dnanexus_ngsapp:1.1.5",
-        "version": "0.9.3"
+        "name": "quay.io/sbamin/dnanexus_ngsapp:1.1.6",
+        "version": "0.9.4"
     }
 ```
 

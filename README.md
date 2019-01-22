@@ -2,10 +2,10 @@
 
 Dockerfile for DNA Nexus NGS tools
 
-[![Docker Build Status](https://img.shields.io/docker/automated/sbamin/dnanexus_ngsapp.svg)](https://hub.docker.com/r/sbamin/dnanexus_ngsapp/) [![Docker Repository on Quay](https://quay.io/repository/sbamin/dnanexus_ngsapp/status "Docker Repository on Quay")](https://quay.io/repository/sbamin/dnanexus_ngsapp) [![GitHub release](https://img.shields.io/github/release/sbamin/dnanexus_ngsapp.svg)](https://github.com/sbamin/dnanexus_ngsapp/releases/tag/v1.1.4) [![GitHub Issues](https://img.shields.io/github/issues/sbamin/dnanexus_ngsapp.svg)](https://github.com/sbamin/dnanexus_ngsapp/issues)
+[![Docker Build Status](https://img.shields.io/docker/automated/sbamin/dnanexus_ngsapp.svg)](https://hub.docker.com/r/sbamin/dnanexus_ngsapp/) [![Docker Repository on Quay](https://quay.io/repository/sbamin/dnanexus_ngsapp/status "Docker Repository on Quay")](https://quay.io/repository/sbamin/dnanexus_ngsapp) [![GitHub release](https://img.shields.io/github/release/sbamin/dnanexus_ngsapp.svg)](https://github.com/sbamin/dnanexus_ngsapp/releases/tag/v1.1.6) [![GitHub Issues](https://img.shields.io/github/issues/sbamin/dnanexus_ngsapp.svg)](https://github.com/sbamin/dnanexus_ngsapp/issues)
 
->19-Jan-2019   
->[v1.1.4](https://github.com/sbamin/dnanexus_ngsapp/releases/tag/v1.1.4)   
+>21-Jan-2019   
+>[v1.1.6](https://github.com/sbamin/dnanexus_ngsapp/releases/tag/v1.1.6)   
 
 *   Source: https://github.com/sbamin/dnanexus_ngsapp
 *   Docker Hub: https://hub.docker.com/r/sbamin/dnanexus_ngsapp
@@ -14,22 +14,22 @@ Dockerfile for DNA Nexus NGS tools
 ### Pull and test image
 
 ```sh
-docker pull sbamin/dnanexus_ngsapp
+docker pull sbamin/dnanexus_ngsapp:1.1.6
 # OR
-docker pull quay.io/sbamin/dnanexus_ngsapp
-# OR
-docker pull sbamin/dnanexus_ngsapp:1.1.4
+docker pull quay.io/sbamin/dnanexus_ngsapp:1.1.6 ## using quay image for dx app asset
 
-docker run sbamin/dnanexus_ngsapp:1.1.4 "uname -a"
+docker run sbamin/dnanexus_ngsapp:1.1.6 "uname -a"
 ## Ubuntu 16.04
-docker run sbamin/dnanexus_ngsapp:1.1.4 "whoami"
+docker run sbamin/dnanexus_ngsapp:1.1.6 "whoami"
 ## Running  as non-root user, pallidus
-docker run sbamin/dnanexus_ngsapp:1.1.4 "snakemake --help"
+docker run sbamin/dnanexus_ngsapp:1.1.6 "snakemake --help"
 ```
 
 ### Running workflows
 
-Two modes to run: as root or with user id mapping to host machine.
+*   Read [how-to-build-nexus-app.md] for building and running TITAN snakemake workflow on DNANexus nodes.
+
+*   If using native docker image, there are two modes yoou can run snakemake workflow: as root or with user id mapping to host machine.
 
 ### To run as root
 
@@ -48,7 +48,7 @@ mkdir -p "$DOCKEVO"
 cd "${DOCKSCRATCH}"
 
 ## Using patched image
-docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore sbamin/dnanexus_ngsapp:1.1.4 "printf 'Hello World! I am '; id -a | tee -a /mnt/scratch/hello.txt"
+docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore sbamin/dnanexus_ngsapp:1.1.6 "printf 'Hello World! I am '; id -a | tee -a /mnt/scratch/hello.txt"
 ```
 
 *   Snakemake workflow for TitanCNA
@@ -70,10 +70,10 @@ mkdir -p "$DOCKEVO"
 cd "${DOCKSCRATCH}"
 
 ## Dry run snakemake
-docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore sbamin/dnanexus_ngsapp:1.1.4 "cd /mnt/evocore/repos/TitanCNA/scripts/snakemake && ./run_snakemake_nexus.sh -m DRY | tee -a /mnt/scratch/testrun.log"
+docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore quay.io/sbamin/dnanexus_ngsapp:1.1.6 "cd /mnt/evocore/repos/TitanCNA/scripts/snakemake && ./run_snakemake_nexus.sh -m DRY | tee -a /mnt/scratch/testrun.log"
 
 ## Run snakemake
-docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore sbamin/dnanexus_ngsapp:1.1.4 "cd /mnt/evocore/repos/TitanCNA/scripts/snakemake && ./run_snakemake_nexus.sh -m RUN | tee -a /mnt/scratch/testrun.log"
+docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore quay.io/sbamin/dnanexus_ngsapp:1.1.6 "cd /mnt/evocore/repos/TitanCNA/scripts/snakemake && ./run_snakemake_nexus.sh -m RUN | tee -a /mnt/scratch/testrun.log"
 ```
 
 ### User ID mapping
