@@ -4,7 +4,7 @@ Samir B. Amin, @sbamin
 Sandeep Namburi, @snamburi3
 
 *   [Building docker based dx app](https://wiki.dnanexus.com/Developer-Tutorials/Using-Docker-Images)
-*   PS: Some of links may not be accessible to all as this is work in progress. We will push dx-app code to public once it runs on DNA Nexus platform.
+*   PS: Some of links may not be accessible to all as this is work in progress. We will push **[dx-app code](https://github.com/sbamin/dxapp_titancna_sjc)** to public once it runs on DNA Nexus platform.
 
 ### Create docker asset record
 
@@ -19,7 +19,9 @@ dx select
 ## select SJC sponsorted bucket. Make sure to note Region from https://platform.dnanexus.com/projects, e.g., azure:west in this example.
 ```
 
-*   Import docker image and make an dx-asset
+*   Import docker image and ~~make an dx-asset~~
+
+PS: Instead of creating asset for docker image (did not work for us), prefer saving tarball of docker image using `docker save -i quay.io/sbamin/dnanexus_ngsapp:1.1.6`. Upload this tarball to dnanexus project where you are buidling app or workflow. Then, we can reference this uploaded tar ball in dx-app-wizard (see below).
 
 ```
 cd /mnt/scratch/lab/amins/docknexus
@@ -164,8 +166,10 @@ dx describe titancna_sjc_azwest
 
 ### To test run
 
+*   Save output to an existing TITANCNA directory in dnanexus project. Project is same as where app is installed.
+
 ```
-dx run titancna_sjc_azwest -f example_run_input.json
+dx run --ssh --destination TITANCNA -f example_run_input.json titancna_sjc_azwest
 ```
 
 END

@@ -27,7 +27,7 @@ docker run sbamin/dnanexus_ngsapp:1.1.6 "snakemake --help"
 
 ### Running workflows
 
-*   Read [how-to-build-nexus-app.md] for building and running TITAN snakemake workflow on DNANexus nodes.
+*   Read [how-to-build-nexus-app.md](how-to-build-nexus-app.md) on building and running TITAN snakemake workflow on DNANexus nodes.
 
 *   If using native docker image, there are two modes yoou can run snakemake workflow: as root or with user id mapping to host machine.
 
@@ -64,21 +64,26 @@ set -euo pipefail
 export DOCKSCRATCH="/mnt/scratch/lab/amins/docknexus/v2_20190118/mnts/scratch"
 export DOCKEVO="/mnt/scratch/lab/amins/docknexus/v2_20190118/mnts/evocore"
 
+## dnanexus input dir
+DXIN="$HOME"/in
+## dnanexus output dir
+DOCK_SMKOUT="$HOME"/out/snakemake
+
 mkdir -p "$DOCKSCRATCH"
 mkdir -p "$DOCKEVO"
 
 cd "${DOCKSCRATCH}"
 
 ## Dry run snakemake
-docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore quay.io/sbamin/dnanexus_ngsapp:1.1.6 "cd /mnt/evocore/repos/TitanCNA/scripts/snakemake && ./run_snakemake_nexus.sh -m DRY | tee -a /mnt/scratch/testrun.log"
+docker run --rm --name dry_"$sample_id" -e R_LIBS="${SET_R_LIBS}" -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore -v "${DXIN}":/mnt/scratch/bam -v "${DOCK_SMKOUT}":/mnt/scratch/snakemake quay.io/sbamin/dnanexus_ngsapp:1.1.6 "cd /mnt/evocore/repos/TitanCNA/scripts/snakemake && ./run_snakemake_nexus.sh -m DRY -i $DOCK_SMK_CONFIG -s $sample_id -c $ncores | tee -a /mnt/scratch/snakemake/dryrun_$sample_id.log"
 
 ## Run snakemake
-docker run -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore quay.io/sbamin/dnanexus_ngsapp:1.1.6 "cd /mnt/evocore/repos/TitanCNA/scripts/snakemake && ./run_snakemake_nexus.sh -m RUN | tee -a /mnt/scratch/testrun.log"
+docker run --rm --name run_"$sample_id" -e R_LIBS="${SET_R_LIBS}" -v "${DOCKSCRATCH}":/mnt/scratch -v "${DOCKEVO}":/mnt/evocore -v "${DXIN}":/mnt/scratch/bam -v "${DOCK_SMKOUT}":/mnt/scratch/snakemake quay.io/sbamin/dnanexus_ngsapp:1.1.6 "cd /mnt/evocore/repos/TitanCNA/scripts/snakemake && ./run_snakemake_nexus.sh -m RUN -i $DOCK_SMK_CONFIG -s $sample_id -c $ncores | tee -a /mnt/scratch/snakemake/run_$sample_id.log"
 ```
 
 ### User ID mapping
 
-*   Using a different tag for user ID mapping. This is only available at `quay.io/sbamin/dnanexus_ngsapp:1.1.3`
+*   Using a different tag for user ID mapping. Note that this may not work inside dnanexus. Also, it is only available in the image: `quay.io/sbamin/dnanexus_ngsapp:1.1.3`
 
 ```sh
 set -euo pipefail
